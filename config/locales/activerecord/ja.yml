@@ -1,0 +1,52 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      problem: 問題
+      answer: ユーザー解答
+      ai_answer: AI解答
+      category: カテゴリー
+      incorrect_answer: 不正解
+
+    attributes:
+      user:
+        email: メールアドレス
+        name: 名前
+        password: パスワード
+        password_confirmation: パスワード確認
+        salt: ソルト
+        created_at: 作成日
+        updated_at: 更新日
+
+      problem:
+        user_id: ユーザーID
+        category_id: カテゴリーID
+        question_text: 問題文
+        created_at: 作成日
+        updated_at: 更新日
+
+      answer:
+        user_id: ユーザーID
+        problem_id: 問題ID
+        category_id: カテゴリーID
+        answer_text: 問題文
+        correct: 正解
+        answered_at: 解答日時
+
+      ai_answer:
+        user_id: ユーザーID
+        problem_id: 問題ID
+        category_id: カテゴリーID
+        answer_text: AIの解答
+        created_at: 作成日
+
+      category:
+        name: カテゴリー名
+        created_at: 作成日
+        updated_at: 更新日
+
+      incorrect_answer:
+        user_id: ユーザーID
+        problem_id: 問題ID
+        correct: 正解
+        answered_at: 解答日時
