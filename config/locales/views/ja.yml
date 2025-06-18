@@ -1,0 +1,21 @@
+ja:
+  layouts:
+    application:
+      title: codechecker
+  views:
+    header:
+      my_page: マイページ
+      logout: ログアウト
+      login: ログイン
+      new_user: 新規登録
+      daily_question: 毎日問題
+  users:
+    new:
+      title: codechecker % ユーザー登録
+      submit: codechecker % 登録
+    show:
+      title: プロフィール
+  user_sessions:
+    new:
+      title: codechecker % ログイン
+      submit: codechecker % ログイン

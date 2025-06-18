@@ -1,0 +1,18 @@
+<div class="max-w-md p-4">
+  <div class="flex-wrap">
+      <h1 class="text-left font-bold text-slate-50"><%= t('user_sessions.new.title') %></h1>
+      <%= form_with url: login_path do |f| %>
+      <div class="tracking-normal text-slate-50">
+        <%= f.label :email, t('activerecord.attributes.user.email') %>
+        <%= f.email_field :email, class: "bg-gray-950 text-white border border-gray-500 rounded w-full p-2" %>
+      </div>
+      <div class="tracking-normal text-slate-50">
+        <%= f.label :password, t('activerecord.attributes.user.password') %>
+        <%= f.password_field :password, class: "bg-gray-950 text-white border border-gray-500 rounded w-full p-2" %>
+      </div>
+      <div class="tracking-normal text-slate-50">
+        <%= f.submit t('user_sessions.new.submit'), class: "btn btn-primary" %>
+        <% end %>
+      </div>
+  </div>
+</div>
