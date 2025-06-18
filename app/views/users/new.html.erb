@@ -5,22 +5,24 @@
       <%= form_with model: @user do |f| %>
       <div class="tracking-normal  text-slate-50">
         <%= f.label :name, class: "form-label" %>
-        <%= f.text_field :name, class: "form-control" %>
+        <%= f.text_field :name, class: "bg-gray-950 text-white border border-gray-500 rounded w-full p-2" %>
       </div>
       <div class="tracking-normal text-slate-50">
         <%= f.label :email, class: "form-label" %>
-        <%= f.email_field :email, class: "form-control" %>
+        <%= f.email_field :email, class: "bg-gray-950 text-white border border-gray-500 rounded w-full p-2" %>
       </div>
       <div class="tracking-normal text-slate-50">
         <%= f.label :password, class: "form-label" %>
-        <%= f.password :password], class: "form-control" %>
+        <%= f.password_field :password, class: "bg-gray-950 text-white border border-gray-500 rounded w-full p-2" %>
       </div>
       <div class="tracking-normal text-slate-50">
         <%= f.label :password_confirmation, class: "form-label" %>
-        <%= f.password :password_confirmation, class: "form-control" %>
+        <%= f.password_field :password_confirmation, class: "bg-gray-950 text-white border border-gray-500 rounded w-full p-2" %>
       </div>
+      <div class="tracking-normal text-slate-50">
       <%= f.submit t('users.new.submit'), class: "btn btn-primary" %>
       <% end %>
+      </div>
     </div>
   </div>
 </div>

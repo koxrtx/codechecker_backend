@@ -10,10 +10,10 @@ ja:
 
     attributes:
       user:
-        email: メールアドレス
-        name: 名前
-        password: パスワード
-        password_confirmation: パスワード確認
+        email: codechecker % メールアドレス
+        name: codechecker % 名前
+        password: codechecker % パスワード
+        password_confirmation: codechecker % パスワード確認
         salt: ソルト
         created_at: 作成日
         updated_at: 更新日

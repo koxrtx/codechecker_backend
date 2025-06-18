@@ -13,8 +13,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "posts#index"
   resources :users
-  get 'login', to: 'sessions#new'
-  post 'login', to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy'
+  get 'login', to: 'user_sessions#new'
+  post 'login', to: 'user_sessions#create'
+  delete 'logout', to: 'user_sessions#destroy', as: 'logout'
   get '/signup', to: 'users#new'
+  get '/daily', to: 'questions#daily', as: 'daily_questions'
 end
