@@ -8,7 +8,7 @@ ja:
       logout: ログアウト
       login: ログイン
       new_user: 新規登録
-      daily_question: 毎日問題
+      problem_daily: 毎日問題
   users:
     new:
       title: codechecker % ユーザー登録
@@ -19,3 +19,6 @@ ja:
     new:
       title: codechecker % ログイン
       submit: codechecker % ログイン
+  problems:
+    daily:
+      title: codechecker % 毎日問題
