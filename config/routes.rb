@@ -17,5 +17,5 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy', as: 'logout'
   get '/signup', to: 'users#new'
-  get '/daily', to: 'questions#daily', as: 'daily_questions'
+  get 'problem/daily', to: 'openai/problems#daily'
 end

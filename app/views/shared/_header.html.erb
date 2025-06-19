@@ -5,11 +5,11 @@
     </h1>
     <nav class="space-x-4">
       <% if current_user %>
-        <%= link_to t('views.header.daily_question'), daily_questions_path, class: "text-rose-300 hover:text-slate-50 mr-7" %>
+        <%= link_to t('views.header.problem_daily'), problem_daily_path, class: "text-rose-400 hover:text-slate-50 mr-7" %>
         <%= link_to t('views.header.my_page'), user_path(current_user), class: "text-orange-300 hover:text-slate-50 mr-7" %>
-        <%= link_to t('views.header.logout'), logout_path, method: :delete, class: "text-lime-300 hover:text-slate-50 mr-7" %>
+        <%= link_to t('views.header.logout'), logout_path, method: :delete, data: { turbo_method: :delete }, class: "text-lime-300 hover:text-slate-50 " %>
       <% else %>
-        <%= link_to t('views.header.daily_question'), daily_questions_path, class: "text-rose-300 hover:text-slate-50" %>
+        <%= link_to t('views.header.problem_daily'), problem_daily_path, class: "text-rose-400 hover:text-slate-50 mr-7" %>
         <%= link_to t('views.header.login'), login_path, class: "text-emerald-300 hover:text-lime-50 mr-7" %>
         <%= link_to t('views.header.new_user'), signup_path, class: "text-sky-300 hover:text-slate-50" %>
       <% end %>
