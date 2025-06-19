@@ -77,3 +77,7 @@ VCS	GitHub
 ## ER図
 
 ![ER図](https://i.gyazo.com/de43e76a9f75a2c62369899e29f352dd.png)
+
+## License
+
+This project is licensed under the [Apache License 2.0](LICENSE).
