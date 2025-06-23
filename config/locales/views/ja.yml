@@ -22,3 +22,9 @@ ja:
   problems:
     daily:
       title: codechecker % 毎日問題
+      submit: 提出
+    answer:
+      title: codechecker % 出力
+  mypages:
+    show:
+      title: codechecker % マイページ

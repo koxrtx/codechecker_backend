@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "mypages/sho"
   get "posts/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -18,4 +19,5 @@ Rails.application.routes.draw do
   delete 'logout', to: 'user_sessions#destroy', as: 'logout'
   get '/signup', to: 'users#new'
   get 'problem/daily', to: 'openai/problems#daily'
+  post 'problem/answer', to:'openai/problems#answer'
 end

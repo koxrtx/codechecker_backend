@@ -14,4 +14,9 @@ class Openai::ProblemsController < ApplicationController
 
     render :daily
   end
+
+  def answer
+    @answer = params[:answer]
+    render :answer
+  end
 end
