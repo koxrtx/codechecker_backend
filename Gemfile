@@ -61,4 +61,4 @@ gem "tailwindcss-ruby", "3.4.17"
 gem 'rails-i18n', '~> 7.0'
 gem 'sorcery', '0.16.3'
 gem 'dotenv-rails'
-gem "openai", "~> 0.9.0"
+gem "openai", "~> 0.10.0"
