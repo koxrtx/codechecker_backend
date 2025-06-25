@@ -1,16 +1,16 @@
 <header class="bg-gray-950">
-  <div class="max-w-7xl mx-auto py-3 flex justify-between items-center">
-    <h1 class="font-light text-xl text-slate-50">
+  <div class="py-3 flex justify-between items-center">
+    <h1 class="font-light text-xl text-slate-50 px-4 py-3">
       <%= link_to "CodeChecker", root_path, class: "block hover:text-slate-50" %>
     </h1>
-    <nav class="space-x-4">
+    <nav class="space-x-4 px-4 py-3">
       <% if current_user %>
-        <%= link_to t('views.header.problem_daily'), problem_daily_path, class: "text-rose-400 hover:text-slate-50 mr-7" %>
-        <%= link_to t('views.header.my_page'), user_path(current_user), class: "text-orange-300 hover:text-slate-50 mr-7" %>
+        <%= link_to t('views.header.problem_daily'), problem_daily_path, class: "text-rose-400 hover:text-slate-50 " %>
+        <%= link_to t('views.header.my_page'), user_path(current_user), class: "text-orange-300 hover:text-slate-50 " %>
         <%= link_to t('views.header.logout'), logout_path, method: :delete, data: { turbo_method: :delete }, class: "text-lime-300 hover:text-slate-50 " %>
       <% else %>
-        <%= link_to t('views.header.problem_daily'), problem_daily_path, class: "text-rose-400 hover:text-slate-50 mr-7" %>
-        <%= link_to t('views.header.login'), login_path, class: "text-emerald-300 hover:text-lime-50 mr-7" %>
+        <%= link_to t('views.header.problem_daily'), problem_daily_path, class: "text-rose-400 hover:text-slate-50 " %>
+        <%= link_to t('views.header.login'), login_path, class: "text-emerald-300 hover:text-lime-50" %>
         <%= link_to t('views.header.new_user'), signup_path, class: "text-sky-300 hover:text-slate-50" %>
       <% end %>
     </nav>

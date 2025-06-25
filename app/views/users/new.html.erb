@@ -1,4 +1,10 @@
 <div class="container mx-auto px-4">
+  <% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %> text-rose-400">
+      <%= message %>
+    </div>
+  <% end %>
+
   <div class="flex flex-wrap">
     <div class="bg-gray-950">
       <h1 class="text-xl font-bold text-slate-50"><%= t('users.new.title') %></h1>
@@ -15,12 +21,12 @@
         <%= f.label :password, class: "form-label" %>
         <%= f.password_field :password, class: "bg-gray-950 text-white border border-gray-500 rounded w-full p-2" %>
       </div>
-      <div class="tracking-normal text-slate-50">
+      <div class="tracking-normal text-slate-50 mb-4">
         <%= f.label :password_confirmation, class: "form-label" %>
         <%= f.password_field :password_confirmation, class: "bg-gray-950 text-white border border-gray-500 rounded w-full p-2" %>
       </div>
-      <div class="tracking-normal text-slate-50">
-      <%= f.submit t('users.new.submit'), class: "btn btn-primary" %>
+      <div class="border border-gray-400 text-slate-50 rounded-sm p-1 inline-flex gap-1">
+        <%= f.submit t('users.new.submit'), class: "btn btn-primary" %>
       <% end %>
       </div>
     </div>

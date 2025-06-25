@@ -1,11 +1,15 @@
 <h1 class="text-xl font-bold text-slate-50 mb-4"><%= t('problems.daily.title') %></h1>
 <div class="text-slate-50">
-  <%= form_with url: problem_answer_path, method: :post, local: true do |f| %>
-    <p><%= @problem %></p>
+  <%= form_with model: @answer, url: problem_answer_path, method: :post, local: true, data: { turbo: false } do |f| %>
+  <div class="mb-4">
+    <p><%= @problem.question_text %></p>
+  </div>
+    <%= hidden_field_tag :question_text, @problem.question_text %>  <!-- ここで送る -->
+  <div class="tracking-normal text-slate-50">
       <div class="tracking-normal text-slate-50">
-        <%= f.text_area :answer, class: "bg-gray-950 text-white border border-gray-500 rounded w-full p-2" %>
+        <%= f.text_area :answer_text, class: "bg-gray-950 text-white border border-gray-500 rounded w-full p-2" %>
       </div>
-      <div class="tracking-normal text-slate-50">
+      <div class="border border-gray-400 rounded-sm p-1 inline-flex gap-1">
         <%= f.submit t('problems.daily.submit'), class: "btn btn-primary" %>
       </div>
   <% end %>

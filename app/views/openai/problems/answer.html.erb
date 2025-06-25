@@ -1,7 +1,18 @@
-<h1 class="text-xl font-bold text-slate-50"><%= t('problems.answer.title') %></h1>
-<div class="text-slate-50">
-  <p><%= @problem %></p>
-  <p><%= @answer %></p>
+<h1 class="text-xl font-bold text-slate-50 mb-4"><%= t('problems.answer.title') %></h1>
+<div class="text-slate-50 mb-4">
+  <p><%= t('problems.answer.problem_daily') %></p>
+  <div class="mb-4">
+    <p><%= @problem.question_text %></p>
+  </div>
+  <div class="mb-4">
+    <p><%= simple_format(@answer.answer_text) %></p>
+  </div>
+  <p><%= t('problems.answer.ai_answer') %></p>
+  <div class="mb-4">
   <p><%= @ai_answer %></p>
-  <p><%= @result %></p>
+  </div>
+
+  <div class="border border-gray-400 rounded-sm p-1 inline-flex gap-1">
+    <%= link_to "戻る", root_path, class: "btn btn-secondary" %>
+  </div>
 </div>

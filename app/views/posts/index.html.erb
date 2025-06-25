@@ -1,5 +1,13 @@
-<p class="font-light text-xl text-slate-50 ">
+<!-- フラッシュメッセージ -->
+<% flash.each do |message_type, message| %>
+  <div class="alert alert-<%= message_type %> text-emerald-400">
+    <%= message %>
+  </div>
+<% end %>
+<div class="container mx-auto">
+  <p class="font-light text-xl text-slate-50 ">
     codechecker % Ruby/SQLの問題をAIが毎日生成し、<br>
     codechecker % 解答・結果比較・弱点復習ができる学習アプリ
-</p>
+  </p>
+</div>
 
