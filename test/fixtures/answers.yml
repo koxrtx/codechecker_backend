@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  problem: one
+  category: one
+  answer_text: MyText
+  correct: false
+  answered_at: 2025-06-20 10:28:16
+
+two:
+  user: two
+  problem: two
+  category: two
+  answer_text: MyText
+  correct: false
+  answered_at: 2025-06-20 10:28:16

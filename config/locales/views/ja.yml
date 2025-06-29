@@ -12,13 +12,21 @@ ja:
   users:
     new:
       title: codechecker % ユーザー登録
-      submit: codechecker % 登録
+      submit: 登録
     show:
       title: プロフィール
   user_sessions:
     new:
       title: codechecker % ログイン
-      submit: codechecker % ログイン
+      submit: ログイン
   problems:
     daily:
       title: codechecker % 毎日問題
+      submit: 提出
+    answer:
+      title: codechecker % 出力
+      problem_daily:  codechecker % 今日の問題
+      ai_answer:  codechecker % AI模範解答
+  mypages:
+    show:
+      title: codechecker % マイページ
