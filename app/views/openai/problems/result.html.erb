@@ -1,15 +1,15 @@
 <h1 class="text-xl font-bold text-slate-50 mb-4"><%= t('problems.answer.title') %></h1>
 <div class="text-slate-50 mb-4">
-  <p><%= t('problems.answer.problem_daily') %></p>
+  <%= t('problems.answer.problem_daily') %>
   <div class="mb-4">
     <%= simple_format(@problem.question_text) %>
   </div>
   <div class="mb-4">
-    <%= simple_format(@answer.answer_text) %>
+    <code><%= simple_format(@answer.answer_text) %></code>
   </div>
   <p><%= t('problems.answer.ai_answer') %></p>
   <div class="mb-4">
-  <pre><code><%= simple_format(@ai_answer.answer_text) %></code></pre>
+  <pre><%= h(@ai_answer.answer_text) %></pre>
   </div>
 
   <div class="border border-gray-400 rounded-sm p-1 inline-flex gap-1">

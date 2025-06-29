@@ -26,26 +26,44 @@ class Openai::ProblemsController < ApplicationController
       end
     end
 
+    @ai_answer = @problem.ai_answer
+
     render :daily
   end
 
   def answer
-    @problem = Problem.new(question_text: params[:question_text])
+    today = Date.current 
+
+    @problem = Problem.find_by(date: today)
     @answer = Answer.new(answer_params)
-    @ai_answer = "Rubyは柔軟でシンプルな文法を持つオブジェクト指向言語です。" # ← ダミー模範解答
+    @ai_answer = @problem.ai_answer
+#  @ai_answer = "Rubyは柔軟でシンプルな文法を持つオブジェクト指向言語です。" # ← ダミー模範解答
+    
+    session[:answer_text] = @answer.answer_text
 
     if @answer.valid?
-      render :answer
+      redirect_to problem_result_path
     else
-      render :daily
+      flash[:error] = '回答を入力してください'
+      redirect_to problem_daily_path
     end
   end
+
+  # 再読み込みした時用
+  def result
+  today = Date.current
+  @problem = Problem.find_by(date: today)
+  @ai_answer = @problem.ai_answer
+
+  # ユーザー回答はセッションから取得
+  @answer = Answer.new(answer_text: session[:answer_text])
+end
 end
 
 private
 
 # answerだけ許可しないとやばい
 def answer_params
-  params.require(:answer).permit(:answer_text)
+  params.permit(:answer_text)
 end
 

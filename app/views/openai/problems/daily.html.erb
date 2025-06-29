@@ -1,3 +1,8 @@
+<% flash.each do |message_type, message| %>
+  <div class="alert alert-<%= message_type %> text-rose-400">
+    <%= message %>
+  </div>
+<% end %>
 <h1 class="text-xl font-bold text-slate-50 mb-4"><%= t('problems.daily.title') %></h1>
 <div class="text-slate-50">
   <%= form_with model: @answer, url: problem_answer_path, method: :post, local: true, data: { turbo: false } do |f| %>

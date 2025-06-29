@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   get 'problem/daily', to: 'openai/problems#daily'
   post 'problem/answer', to:'openai/problems#answer', as: 'problem_answer'
+  # 再読み込みで二重でdbに保存しないため
+  get  'problem/result', to: 'openai/problems#result', as: 'problem_result'
 end
