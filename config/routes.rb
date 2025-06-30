@@ -14,22 +14,22 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "posts#index"
   resources :users
-  get 'login', to: 'user_sessions#new'
-  post 'login', to: 'user_sessions#create'
-  delete 'logout', to: 'user_sessions#destroy', as: 'logout'
-  get '/signup', to: 'users#new'
-  get 'problem/select', to: 'openai/problems#select', as: 'problem_select'
+  get "login", to: "user_sessions#new"
+  post "login", to: "user_sessions#create"
+  delete "logout", to: "user_sessions#destroy", as: "logout"
+  get "/signup", to: "users#new"
+  get "problem/select", to: "openai/problems#select", as: "problem_select"
 
   # Openai::Controller を使うためのグループ化
   namespace :openai do
     # Ruby用
-    get  'ruby/daily',   to: 'ruby_problems#daily',   as: 'ruby_problem'
-    post 'ruby/answer',  to: 'ruby_problems#answer',  as: 'ruby_problem_answer'
-    get  'ruby/result',  to: 'ruby_problems#result',  as: 'ruby_problem_result'
+    get  "ruby/daily",   to: "ruby_problems#daily",   as: "ruby_problem"
+    post "ruby/answer",  to: "ruby_problems#answer",  as: "ruby_problem_answer"
+    get  "ruby/result",  to: "ruby_problems#result",  as: "ruby_problem_result"
 
     # SQL用
-    get  'sql/daily',    to: 'sql_problems#daily',    as: 'sql_problem'
-    post 'sql/answer',   to: 'sql_problems#answer',   as: 'sql_problem_answer'
-    get  'sql/result',   to: 'sql_problems#result',   as: 'sql_problem_result'
+    get  "sql/daily",    to: "sql_problems#daily",    as: "sql_problem"
+    post "sql/answer",   to: "sql_problems#answer",   as: "sql_problem_answer"
+    get  "sql/result",   to: "sql_problems#result",   as: "sql_problem_result"
   end
 end

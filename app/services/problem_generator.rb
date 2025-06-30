@@ -27,7 +27,7 @@ class ProblemGenerator
     # ハッシュにした問題・回答があるか確認する
     problem = nil
     if parsed && parsed["problem"] && parsed["answer"] && parsed["explanation"]
-      problem = Problem.create!(question_text:parsed["problem"])
+      problem = Problem.create!(question_text: parsed["problem"])
 
       ai_answer = AiAnswer.create!(
         problem_id: problem.id,
@@ -40,17 +40,17 @@ class ProblemGenerator
         question_text: "問題が取得できませんでした。"
       )
     end
-    return problem
+    problem
 
-  # ダミー問題
-  # problem = Problem.new(
-  #  question_text: "これはダミー問題です。RubyでFizzBuzzを出力してください",
-  #  answer: "1から100までの数字をループし、3で割り切れる時はFizz、5で割り切れる時はBuzz、両方ならFizzBuzzと表示。"
-  # )
+    # ダミー問題
+    # problem = Problem.new(
+    #  question_text: "これはダミー問題です。RubyでFizzBuzzを出力してください",
+    #  answer: "1から100までの数字をループし、3で割り切れる時はFizz、5で割り切れる時はBuzz、両方ならFizzBuzzと表示。"
+    # )
 
-  # return problem
+    # return problem
   end
-  
+
   # sql用
   def self.generate_daily_sql_problem
     response = OpenAIClient.chat(
@@ -79,7 +79,7 @@ class ProblemGenerator
     # ハッシュにした問題・回答があるか確認する
     problem = nil
     if parsed && parsed["problem"] && parsed["answer"] && parsed["explanation"]
-      problem = Problem.create!(question_text:parsed["problem"])
+      problem = Problem.create!(question_text: parsed["problem"])
 
       ai_answer = AiAnswer.create!(
         problem_id: problem.id,
@@ -92,7 +92,6 @@ class ProblemGenerator
         question_text: "問題が取得できませんでした。"
       )
     end
-    return problem
-
+    problem
   end
 end

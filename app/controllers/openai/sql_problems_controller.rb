@@ -39,7 +39,7 @@ class Openai::SqlProblemsController < ApplicationController
     if @answer.valid?
       redirect_to openai_sql_problem_result_path
     else
-      flash[:error] = '回答を入力してください'
+      flash[:error] = "回答を入力してください"
       redirect_to openai_sql_problem_path
     end
   end
@@ -49,17 +49,17 @@ class Openai::SqlProblemsController < ApplicationController
     today = Date.current
     category = Category.find_by(name: "SQL")
 
-    @problem = Problem.find_by(date: today,category: category)
+    @problem = Problem.find_by(date: today, category: category)
     @ai_answer = @problem.ai_answer
 
-  # ユーザー回答はセッションから取得
+    # ユーザー回答はセッションから取得
     @answer = Answer.new(answer_text: session[:answer_text])
   end
 end
 
   private
 
-# answerだけ許可しないとやばい
+  # answerだけ許可しないとやばい
   def answer_params
     params.permit(:answer_text)
   end
