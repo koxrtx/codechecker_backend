@@ -1,2 +1,0 @@
-module Openai::ProblemsHelper
-end

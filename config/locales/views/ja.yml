@@ -20,6 +20,16 @@ ja:
       title: codechecker % ログイン
       submit: ログイン
   problems:
+    ruby_daily:
+      title: codechecker % 毎日問題ruby
+    ruby_result:
+      title: codechecker % 出力
+    sql_daily:
+      title: codechecker % 毎日問題SQL
+    sql_result:
+      title: codechecker % 出力
+    select:
+      title: codechecker % 問題選択
     daily:
       title: codechecker % 毎日問題
       submit: 提出

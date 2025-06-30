@@ -1,0 +1,26 @@
+<div class="text-slate-50 mb-4">
+  <h1 class="text-xl font-bold text-slate-50 mb-4"><%= t('problems.sql_result.title') %></h1>
+  <div class="mb-4">
+    <%= simple_format(@problem.question_text) %>
+  </div>
+  <div class="mb-4 border border-gray-300 p-4 rounded">
+    <code><%= simple_format(@answer.answer_text) %></code>
+  </div>
+  <p class="text-xl font-bold text-slate-50 mb-4"><%= t('problems.answer.ai_answer') %></p>
+  <div class="mb-4">
+  <pre><%= h(@ai_answer.answer_text) %></pre>
+  </div>
+  <div class="mb-4">
+    <%= simple_format(@ai_answer.explanation) %>
+  </div>
+
+  <div class="border border-gray-400 rounded-sm p-1 inline-flex gap-1">
+    <%= link_to "戻る", root_path, class: "btn btn-secondary" %>
+  </div>
+  <div class="border border-gray-400 rounded-sm p-1 inline-flex gap-1">
+  <!-- Xに投稿するボタン設定 デプロイ後正式なURLに書き換える -->
+  <%= link_to "Xに投稿する",
+    "https://twitter.com/intent/tweet?text=#{CGI.escape('今日の問題解いたよ！ #codechecker')}&url=https://your-domain.com",
+    class: "btn btn-secondary" %>
+  </div>
+</div>
