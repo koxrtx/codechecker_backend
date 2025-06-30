@@ -7,6 +7,13 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!-- Xツイート設定 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:title" content="codechecker">
+    <meta property="og:description" content="毎日AIが問題を出題する学習アプリ！">
+    <!-- あとで本番URLで正しく書くこと！ -->
+    <meta property="og:image" content="https://your-domain.com/codechecker.png">
+
     <%= yield :head %>
 
     <link rel="manifest" href="/manifest.json">
