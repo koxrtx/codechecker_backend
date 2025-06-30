@@ -4,10 +4,10 @@ class Openai::RubyProblemsController < ApplicationController
     ruby_category = Category.find_by(name: "Ruby")
 
     # ダミー問題
-  #  @problem = Problem.new(
-  #  question_text: "これはダミー問題です。RubyでFizzBuzzを出力してください"
-  #  )
-  #  @answer = Answer.new
+    #  @problem = Problem.new(
+    #  question_text: "これはダミー問題です。RubyでFizzBuzzを出力してください"
+    #  )
+    #  @answer = Answer.new
 
     @problem = Problem.find_by(date: today, category: ruby_category)
     if @problem.nil?
@@ -39,14 +39,14 @@ class Openai::RubyProblemsController < ApplicationController
     @problem = Problem.find_by(date: today, category: category)
     @answer = Answer.new(answer_params)
     @ai_answer = @problem.ai_answer
-  # @ai_answer = "Rubyは柔軟でシンプルな文法を持つオブジェクト指向言語です。" # ← ダミー模範解答
+    # @ai_answer = "Rubyは柔軟でシンプルな文法を持つオブジェクト指向言語です。" # ← ダミー模範解答
 
     session[:answer_text] = @answer.answer_text
 
     if @answer.valid?
       redirect_to openai_ruby_problem_result_path
     else
-      flash[:error] = '回答を入力してください'
+      flash[:error] = "回答を入力してください"
       redirect_to openai_ruby_problem_path
     end
   end
@@ -56,10 +56,10 @@ class Openai::RubyProblemsController < ApplicationController
     today = Date.current
     category = Category.find_by(name: "Ruby")
 
-    @problem = Problem.find_by(date: today,category: category)
+    @problem = Problem.find_by(date: today, category: category)
     @ai_answer = @problem.ai_answer
 
-  # ユーザー回答はセッションから取得
+    # ユーザー回答はセッションから取得
     @answer = Answer.new(answer_text: session[:answer_text])
   end
 end

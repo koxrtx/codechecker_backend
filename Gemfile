@@ -44,10 +44,11 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 end
-
+# 開発環境
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "rubocop", require: false # require: falseは自動で読み込まないでって意味
 end
 
 group :test do
@@ -58,8 +59,8 @@ end
 
 gem "tailwindcss-rails"
 gem "tailwindcss-ruby", "3.4.17"
-gem 'rails-i18n', '~> 7.0'
-gem 'sorcery', '0.16.3'
+gem "rails-i18n", "~> 7.0"
+gem "sorcery", "0.16.3"
 # .envファイルから読み込むgem
-gem 'dotenv-rails'
+gem "dotenv-rails"
 gem "ruby-openai", "~> 8.1"
