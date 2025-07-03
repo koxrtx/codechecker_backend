@@ -9,6 +9,11 @@
   <div class="mb-4">
     <p><%= @problem.question_text %></p>
   </div>
+  <div class="mb-4">
+    <% if @ai_answer.present? %>
+      <p>使用するメゾット名：<strong><%= @ai_answer.method_name %></strong></p>
+    <% end %>
+  </div>
   <%= hidden_field_tag :question_text, @problem.question_text %>
     <div class="tracking-normal text-slate-50 mb-4">
       <%= f.text_area :answer_text, class: "bg-gray-950 text-white border border-gray-500 rounded w-full p-2" %>

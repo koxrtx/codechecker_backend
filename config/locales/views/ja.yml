@@ -23,11 +23,11 @@ ja:
     ruby_daily:
       title: codechecker % 毎日問題ruby
     ruby_result:
-      title: codechecker % 出力
+      title: codechecker % Ruby_出力
     sql_daily:
       title: codechecker % 毎日問題SQL
     sql_result:
-      title: codechecker % 出力
+      title: codechecker % SQL_出力
     select:
       title: codechecker % 問題選択
     daily:

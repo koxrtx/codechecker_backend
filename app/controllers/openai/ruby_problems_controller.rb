@@ -44,6 +44,19 @@ class Openai::RubyProblemsController < ApplicationController
     session[:answer_text] = @answer.answer_text
 
     if @answer.valid?
+      begin
+        puts "=== DEBUG: ユーザーコード ==="
+        puts @answer.answer_text
+        puts "=== DEBUG: テストコード ==="
+        puts @ai_answer.test_code.inspect
+        # ユーザーのコードとAIのテストコードを評価
+        test_result = CodeExecutor.run(@answer.answer_text, @ai_problem.test_code)
+        session[:test_result] = test_result
+      rescue => e
+        # 実行時エラーをセッションに格納しておく
+        session[:test_result] = "実行エラー: #{e.message}"
+      end
+
       redirect_to openai_ruby_problem_result_path
     else
       flash[:error] = "回答を入力してください"
@@ -61,6 +74,7 @@ class Openai::RubyProblemsController < ApplicationController
 
     # ユーザー回答はセッションから取得
     @answer = Answer.new(answer_text: session[:answer_text])
+    @test_result = session[:test_result]
   end
 end
 
