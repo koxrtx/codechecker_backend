@@ -1,7 +1,8 @@
 class Openai::SqlProblemsController < ApplicationController
   def daily
     today = Date.current
-    sql_category = Category.find_by(name: "SQL")
+    # sql_category = Category.find_by(name: "SQL")
+    sql_category = Category.find_or_create_by!(name: "SQL")
     puts "SQLカテゴリ: #{sql_category.inspect}"
 
     @problem = Problem.find_by(date: today, category: sql_category)
