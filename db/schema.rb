@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_06_29_080144) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_01_043445) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_29_080144) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "explanation"
+    t.text "test_code"
+    t.string "method_name"
     t.index ["category_id"], name: "index_ai_answers_on_category_id"
     t.index ["problem_id"], name: "index_ai_answers_on_problem_id"
     t.index ["user_id"], name: "index_ai_answers_on_user_id"
