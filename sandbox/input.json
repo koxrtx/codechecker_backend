@@ -1,5 +1,0 @@
-{
-  "user_code": "def sum_of_evens(arr)\n  arr.select(&:even?).sum\nend",
-  "test_code": "raise 'NG' unless sum_of_evens([1, 2, 3, 4]) == 6",
-  "method_name": "sum_of_evens"
-}

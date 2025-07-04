@@ -39,25 +39,19 @@ class Openai::RubyProblemsController < ApplicationController
     @problem = Problem.find_by(date: today, category: category)
     @answer = Answer.new(answer_params)
     @ai_answer = @problem.ai_answer
-    # @ai_answer = "Rubyは柔軟でシンプルな文法を持つオブジェクト指向言語です。" # ← ダミー模範解答
 
     session[:answer_text] = @answer.answer_text
 
     if @answer.valid?
-      begin
-        puts "=== DEBUG: ユーザーコード ==="
-        puts @answer.answer_text
-        puts "=== DEBUG: テストコード ==="
-        puts @ai_answer.test_code.inspect
-        # ユーザーのコードとAIのテストコードを評価
-        test_result = CodeExecutor.run(@answer.answer_text, @ai_problem.test_code)
-        session[:test_result] = test_result
-      rescue => e
-        # 実行時エラーをセッションに格納しておく
-        session[:test_result] = "実行エラー: #{e.message}"
-      end
+      # AIによる判定処理だけ
+      result = AiAnswerChecker.check(
+        user_code: @answer.answer_text,
+        ai_problem: @problem.question_text,
+        ai_answer: @ai_answer.answer_text
+      )
+    session[:verdict] = result["verdict"]
 
-      redirect_to openai_ruby_problem_result_path
+    redirect_to openai_ruby_problem_result_path
     else
       flash[:error] = "回答を入力してください"
       redirect_to openai_ruby_problem_path
@@ -74,7 +68,7 @@ class Openai::RubyProblemsController < ApplicationController
 
     # ユーザー回答はセッションから取得
     @answer = Answer.new(answer_text: session[:answer_text])
-    @test_result = session[:test_result]
+    @verdict = session[:verdict]
   end
 end
 
