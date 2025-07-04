@@ -10,11 +10,11 @@
   <div class="mb-4">
   <pre><%= h(@ai_answer.answer_text) %></pre>
   </div>
-  <% if @test_result.present? %>
-    <div class="mb-4 text-slate-50 font-bold">
-      テスト結果: <%= @test_result.include?("NG") || @test_result.include?("エラー") ? "❌ 失敗" : "✅ 合格" %>
-    </div>
-  <% end %>
+  <% if @verdict.present? %>
+  <div class="mb-4 text-slate-50 font-bold">
+    テスト結果: <%= @verdict == "success" ? "✅ 合格" : "❌ 失敗" %>
+  </div>
+<% end %>
   <div class="mb-4">
     <%= simple_format(@ai_answer.explanation) %>
   </div>
