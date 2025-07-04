@@ -1,0 +1,10 @@
+<div class="tracking-normal text-slate-50"><h1>問題詳細</h1>
+
+<p><strong>日付:</strong> <%= @problem.date %></p>
+<p><strong>カテゴリ:</strong> <%= @problem.category&.name || "カテゴリなし" %></p>
+<p><strong>問題文:</strong></p>
+<p><%= simple_format(@problem.question_text) %></p>
+<p><strong>AIの模範解答:</strong></p>
+<p><%= simple_format(@problem.ai_answer&.answer_text || "AI解答が未登録です") %></p>
+
+<%= link_to "一覧に戻る", admin_problems_path, class: "btn" %></div>

@@ -32,4 +32,9 @@ Rails.application.routes.draw do
     post "sql/answer",   to: "sql_problems#answer",   as: "sql_problem_answer"
     get  "sql/result",   to: "sql_problems#result",   as: "sql_problem_result"
   end
+
+  # 管理者画面
+  namespace :admin do
+    resources :problems, only: [:index, :show, :destroy]
+  end
 end

@@ -1,0 +1,25 @@
+<h1 class="text-xl mb-4">問題一覧</h1>
+
+<table class="w-full table-auto text-left text-slate-50">
+  <thead>
+    <tr>
+      <th>日付</th>
+      <th>カテゴリ</th>
+      <th>問題文</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @problems.each do |problem| %>
+      <tr>
+        <td><%= problem.date %></td>
+        <td><%= problem.category&.name || "カテゴリなし" %></td>
+        <td><%= truncate(problem.question_text, length: 50) %></td>
+        <td>
+          <%= link_to "表示", admin_problem_path(problem), class: "text-blue-500" %> |
+          <%= link_to "削除", admin_problem_path(problem), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "text-red-500" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
