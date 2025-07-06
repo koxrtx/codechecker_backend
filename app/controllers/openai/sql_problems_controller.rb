@@ -24,6 +24,10 @@ class Openai::SqlProblemsController < ApplicationController
       end
     end
 
+    # ログの確認
+    Rails.logger.debug "🎯 今日のSQL問題: #{@problem.inspect}"
+    Rails.logger.debug "🧠 AIの模範解答: #{@problem.ai_answer.inspect}"
+
     @ai_answer = @problem.ai_answer
     render :daily
   end

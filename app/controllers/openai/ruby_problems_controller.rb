@@ -1,7 +1,7 @@
 class Openai::RubyProblemsController < ApplicationController
   def daily
     today = Date.current
-    ruby_category = Category.find_by(name: "Ruby")
+    ruby_category = Category.find_or_create_by!(name: "Ruby")
 
     # ダミー問題
     #  @problem = Problem.new(
@@ -27,6 +27,10 @@ class Openai::RubyProblemsController < ApplicationController
         end
       end
     end
+
+    # ログの確認
+    Rails.logger.debug "🎯 今日のRuby問題: #{@problem.inspect}"
+    Rails.logger.debug "🧠 AIの模範解答: #{@problem.ai_answer.inspect}"
 
     @ai_answer = @problem.ai_answer
     render :daily
