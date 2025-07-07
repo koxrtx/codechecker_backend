@@ -1,6 +1,8 @@
 class ProblemGenerator
   # rubyの毎日問題についての一括設定
   def self.generate_daily_ruby_problem
+    Rails.logger.debug("ProblemGenerator呼ばれたよ")
+
     response = OpenAIClient.chat(
       parameters: {
         model: "gpt-4o",
@@ -17,17 +19,19 @@ class ProblemGenerator
     )
     # AIからの返答を取り出す
     content = response.to_h.dig("choices", 0, "message", "content")
+    Rails.logger.debug("OpenAIレスポンスの内容: #{content.inspect}")
+    parsed = JSON.parse(content)
 
     # 受け取ったJSONをハッシュに変換する
-    parsed = nil
-    begin
-      parsed = JSON.parse(content)
-    rescue
-      JSON::ParserError
+    rescue JSON::ParserError => e
+      Rails.logger.error("JSONパース失敗: #{e.message}")
+      parsed = nil
+    rescue => e
+      Rails.logger.error("OpenAI呼び出しエラー: #{e.class} - #{e.message}")
+      return Problem.new(question_text: "問題の生成中にエラーが発生しました。")
     end
 
     # ハッシュにした問題・回答があるか確認する
-    problem = nil
     if parsed && parsed["problem"] && parsed["answer"] && parsed["explanation"] && parsed["test"] && parsed["method_name"]
       problem = Problem.create!(question_text: parsed["problem"])
 
@@ -39,6 +43,7 @@ class ProblemGenerator
         method_name: parsed["method_name"]
       )
     else
+      Rails.logger.error("JSONのキーが不足 or 問題が取得できませんでした。と表示")
       # 問題が作られなかった場合の代わりになる
       problem = Problem.create!(
         question_text: "問題が取得できませんでした。"
