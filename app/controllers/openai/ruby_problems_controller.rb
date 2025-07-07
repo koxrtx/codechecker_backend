@@ -49,6 +49,7 @@ class Openai::RubyProblemsController < ApplicationController
     @ai_answer = @problem.ai_answer
 
     session[:answer_text] = @answer.answer_text
+    session[:problem_id] = @problem.id
 
     if @answer.valid?
       # AIによる判定処理だけ
@@ -67,18 +68,20 @@ class Openai::RubyProblemsController < ApplicationController
   end
 
   # 再読み込みした時用
+
   def result
-    today = Date.current
-    category = Category.find_by(name: "Ruby")
+    @problem = Problem.find_by(id: session[:problem_id])
+    @ai_answer = @problem&.ai_answer
 
-    @problem = Problem.find_by(date: today, category: category)
-    @ai_answer = @problem.ai_answer
-
-    # ユーザー回答はセッションから取得
     @answer = Answer.new(answer_text: session[:answer_text])
     @verdict = session[:verdict]
+
+    if @problem.nil? || @problem.question_text&.include?("問題が取得できませんでした。")
+      flash[:error] = "問題情報が正しく取得できませんでした。"
+      redirect_to openai_ruby_problem_path
+    end
   end
-end
+
 
   private
 
@@ -86,3 +89,5 @@ end
   def answer_params
     params.permit(:answer_text)
   end
+
+end
