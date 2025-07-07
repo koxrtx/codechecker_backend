@@ -17,7 +17,7 @@ class Openai::RubyProblemsController < ApplicationController
         @problem = ProblemGenerator.generate_daily_ruby_problem
 
       if @problem.nil?
-        Rails.logger.error("⚠️ ProblemGeneratorがnilを返しました")
+        Rails.logger.error("ProblemGeneratorがnilを返しました")
         flash[:error] = "問題の生成に失敗しました"
         return render :daily
       end
@@ -33,8 +33,8 @@ class Openai::RubyProblemsController < ApplicationController
   end
 
     # ログの確認
-    Rails.logger.debug "🎯 今日のRuby問題: #{@problem.inspect}"
-    Rails.logger.debug "🧠 AIの模範解答: #{@problem.ai_answer.inspect}"
+    Rails.logger.debug "今日のRuby問題: #{@problem.inspect}"
+    Rails.logger.debug "AIの模範解答: #{@problem.ai_answer.inspect}"
 
     @ai_answer = @problem.ai_answer
     render :daily
@@ -44,7 +44,7 @@ class Openai::RubyProblemsController < ApplicationController
     today = Date.current
     category = Category.find_by(name: "Ruby")
 
-    @problem = Problem.find_by(date: today, category: category)
+    @problem = Problem.find_by(id: params[:problem_id])
     @answer = Answer.new(answer_params)
     @ai_answer = @problem.ai_answer
 
