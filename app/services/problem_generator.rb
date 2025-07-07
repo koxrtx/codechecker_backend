@@ -21,6 +21,8 @@ class ProblemGenerator
     )
     # AIからの返答を取り出す
     content = response.to_h.dig("choices", 0, "message", "content")
+    content = content.gsub(/\A```json\s*/, '').gsub(/\s*```+\z/, '').strip
+
     Rails.logger.debug("OpenAIレスポンスの内容: #{content.inspect}")
     parsed = JSON.parse(content)
 
