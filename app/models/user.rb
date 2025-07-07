@@ -8,4 +8,8 @@ class User < ApplicationRecord
 
   # 管理者画面
   enum role: { general: 0, admin: 1 }
+
+  has_many :answers
+  has_many :incorrect_answers, -> { where(correct: false) }, class_name: "Answer"
+  has_many :incorrect_problems, through: :incorrect_answers, source: :problem
 end

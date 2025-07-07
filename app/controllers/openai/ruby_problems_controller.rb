@@ -46,6 +46,9 @@ class Openai::RubyProblemsController < ApplicationController
 
     @problem = Problem.find_by(id: params[:problem_id])
     @answer = Answer.new(answer_params)
+    @answer.user = current_user if current_user
+    @answer.problem = @problem
+    @answer.category = category
     @ai_answer = @problem.ai_answer
 
     session[:answer_text] = @answer.answer_text
@@ -59,6 +62,12 @@ class Openai::RubyProblemsController < ApplicationController
         ai_answer: @ai_answer.answer_text
       )
     session[:verdict] = result["verdict"]
+
+    @answer.correct = (result["verdict"] == "correct")
+    @answer.answered_at = Time.current
+
+    # DBに保存する
+    @answer.save!
 
     redirect_to openai_ruby_problem_result_path
     else
