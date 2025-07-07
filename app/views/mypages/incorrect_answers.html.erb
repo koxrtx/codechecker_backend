@@ -1,0 +1,12 @@
+<h1 class="tracking-normal text-slate-50 mb-4">不正解だった問題一覧</h1>
+
+<% if @incorrect_problems.present? %>
+  <% @incorrect_problems.each do |problem| %>
+    <div class="mb-4 p-2 border rounded bg-gray-800 text-white">
+      <p><%= problem.question_text %></p>
+      <%= link_to "再チャレンジ", openai_ruby_problem_path(problem_id: problem.id), class: "text-blue-400 hover:underline" %>
+    </div>
+  <% end %>
+<% else %>
+  <p class="tracking-normal text-slate-50 mb-4"">不正解の問題はまだありません。</p>
+<% end %>

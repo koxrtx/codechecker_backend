@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   delete "logout", to: "user_sessions#destroy", as: "logout"
   get "/signup", to: "users#new"
   get "problem/select", to: "openai/problems#select", as: "problem_select"
+  get 'mypage/incorrect_answers', to: 'mypages#incorrect_answers'
 
   # Openai::Controller を使うためのグループ化
   namespace :openai do
@@ -37,4 +38,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :problems, only: [:index, :show, :destroy]
   end
+
+  
 end
