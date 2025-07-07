@@ -2,8 +2,10 @@ class ProblemGenerator
   # rubyの毎日問題についての一括設定
   def self.generate_daily_ruby_problem
     Rails.logger.debug("ProblemGenerator呼ばれたよ")
+    parsed = nil
 
-    response = OpenAIClient.chat(
+    begin
+      response = OpenAIClient.chat(
       parameters: {
         model: "gpt-4o",
         messages: [
