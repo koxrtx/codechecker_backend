@@ -10,23 +10,25 @@ class Openai::RubyProblemsController < ApplicationController
     #  @answer = Answer.new
 
     @problem = Problem.find_by(date: today, category: ruby_category)
+if @problem.nil?
+  begin
+    @problem = ProblemGenerator.generate_daily_ruby_problem
+
     if @problem.nil?
-      begin
-        @problem = ProblemGenerator.generate_daily_ruby_problem
-        @problem.date = today
-        @problem.category = ruby_category
-        @problem.save!
-      rescue OpenAI::Error => e
-        case e.status
-        when 429
-          Rails.logger.warn("429 しばらく待ってください")
-        when 500..599
-          Rails.logger.error("サーバーエラー")
-        else
-          Rails.logger.error("その他のエラー")
-        end
-      end
+      Rails.logger.error("⚠️ ProblemGeneratorがnilを返しました")
+      flash[:error] = "問題の生成に失敗しました"
+      return render :daily
     end
+
+    @problem.date = today
+    @problem.category = ruby_category
+    @problem.save!
+  rescue OpenAI::Error => e
+    Rails.logger.error("OpenAIエラー: #{e.class} - #{e.message}")
+    flash[:error] = "AI問題の取得に失敗しました（#{e.message}）"
+    return render :daily
+  end
+end
 
     # ログの確認
     Rails.logger.debug "🎯 今日のRuby問題: #{@problem.inspect}"
